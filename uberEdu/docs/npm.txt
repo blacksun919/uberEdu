@@ -1,0 +1,66 @@
+Install package globally. Global packages are usually for executable commands.
+$ npm install <package name> -g
+# example
+$ npm install express -g
+# now we can use express to generate a new app
+$ express new app
+Install package locally. Local packages are for the use of require in the app.
+$ cd /path/to/the/project
+$ npm install <package name>
+# example
+$ npm install express
+# now you can use `var express = require( 'express' );` in your app
+Uninstall global package.
+$ npm uninstall <package name> -g
+# example
+$ npm uninstall express -g
+Uninstall local package.
+$ cd /path/to/the/project
+$ npm uninstall <package name>
+# example
+$ npm uninstall express
+Search package.
+$ npm search <package name>
+# example
+$ npm search express
+List global packages.
+$ npm ls -g
+List global packages detail.
+$ npm ls -gl
+List local packages.
+$ cd /path/to/the/project
+$ npm ls
+List local packages detail.
+$ cd /path/to/the/project
+$ npm ls -l
+Update global packages.
+$ npm update -g
+Update local packages.
+$ cd /path/to/the/project
+$ npm update
+
+Using `package.json` to manage your app packages
+With a package.json file in the root of your app dir, you don’t need to manually install every package.
+Instead of doing
+$ cd /path/to/the/project
+$ npm install mongoose
+$ npm install express
+$ npm install jade
+Create a package.json file in the root of your app dir
+$ cd /path/to/the/project
+$ touch package.json
+package.json
+{
+    "name": "your app name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": ">=2.5.0"
+    , "jade": ">= 0.16.4"
+    , "mongoose": ">=2.3.10"
+  }
+}
+Then type in the following command all your packages will be installed.
+$ npm install -l
+
+$ npm install express@3.4.7 -g
