@@ -1,13 +1,38 @@
+require('./db.js')
 var express = require('express');
 var app = express();
-var rest = require('./rest');
-require('./db.js')
+var bodyParser = require('body-parser');
+var rsUsuario = require('./rest/usuario.js');
 
-var server = app.listen(8081, function () {
-  var host = server.address().address
-  var port = server.address().port
-  console.log("Example app listening at http://%s:%s", host, port)
-})
+//configure app to use bodyParser()
+//this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+var port = process.env.PORT || 8080;        // set our port
+
+//ROUTES FOR OUR API
+//=============================================================================
+var router = express.Router();              // get an instance of the express Router
+
+//test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function(req, res) {
+ res.json({ message: 'hooray! welcome to our api!' });   
+});
 
 
-app.get('/listaUsuarios', rest.listaUsuarios);
+//REGISTER OUR ROUTES -------------------------------
+//all of our routes will be prefixed with /api
+app.use('/api', router);
+
+//START THE SERVER
+//=============================================================================
+app.listen(port);
+console.log('Magic happens on port ' + port);
+
+
+//*****************
+
+app.get('/listaUsuarios', function (req, res) {
+	rsUsuario.listaUsuarios(req, res);
+});

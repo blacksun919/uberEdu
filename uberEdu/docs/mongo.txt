@@ -9,3 +9,5 @@ Then you can double click mongo.exe or type the following command in terminal to
   C:\> cd your_mongodb_path\bin
   C:\> mongo
 Congratulations!!! You’ve successfully installed node.js and mongoDB on Windows!!!
+
+C:\Program Files\MongoDB\Server\3.2\bin
